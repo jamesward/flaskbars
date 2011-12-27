@@ -36,7 +36,7 @@ Run on Heroku
 
 3. Create the database schema
 
-        heroku run "python 
+        heroku run "python manage.py createDbSchema"
 
 4. Open the app in your browser
 
