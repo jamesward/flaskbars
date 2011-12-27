@@ -4,10 +4,11 @@ from flask import Flask, render_template, redirect, url_for, request, make_respo
 from flaskext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-#app.config['SQLALCHEMY_ECHO'] = !os.environ.get('PROD')
-app.config['SQLALCHEMY_ECHO'] = True
-#app.debug = !os.environ.get('PROD')
-app.debug = True
+
+if not os.environ.get('PROD'):
+    app.config['SQLALCHEMY_ECHO'] = True
+    app.debug = True
+
 db = SQLAlchemy(app)
 
 class Bar(db.Model):
