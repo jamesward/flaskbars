@@ -10,17 +10,19 @@ Run Locally
     
     Set the `DATABASE_URL` environment variable to point to your PostgreSQL server:
     
-        export DATABASE_URL=postgres://foo:folocalhost/helloheroku
+        export DATABASE_URL=postgres://foo:foo@localhost/helloheroku
     
     Create the database schema:
     
-        python
-        from web import db
-        db.create_all()
+        python manage.py createDbSchema
 
 3. Start Flask Server
     
         python web.py
+
+4. Test out the app
+
+    [http://localhost:5000](http://localhost:5000)
     
 
 Run on Heroku
