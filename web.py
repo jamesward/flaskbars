@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request, jsonify
+import simplejson
+from flask import Flask, render_template, redirect, url_for, request, make_response
 from flaskext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -30,7 +31,13 @@ def addBar():
 @app.route("/listBars")
 def listBars():
     bars = Bar.query.all()
-    return jsonify(bars)
+    bar_list = []
+    for bar in bars:
+       bar_list.append({'id': bar.id, 'name': bar.name})
+    response = make_response()
+    response.headers['Content-Type'] = 'application/json'
+    response.data = simplejson.dumps(bar_list)
+    return response
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
