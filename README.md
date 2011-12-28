@@ -32,21 +32,25 @@ Run on Heroku
 
         heroku create -s cedar
 
-2. Deploy the app
+2. Add the Heroku Shared Database Add-on
+
+        heroku addons:add shared-database
+
+3. Deploy the app
 
         git push heroku master
 
-3. Create the database schema
+4. Create the database schema
 
         heroku run "python manage.py createDbSchema"
 
-4. Open the app in your browser
+5. Open the app in your browser
 
         heroku open
 
-5. Verify that it works
+6. Verify that it works
 
-6. Switch the app to `PROD` mode
+7. Switch the app to `PROD` mode
 
         heroku config:add PROD=True
 
